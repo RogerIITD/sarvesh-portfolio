@@ -25,7 +25,7 @@ export default function MobileMenu({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/30 z-50"
+            className="fixed inset-0 bg-black/50 z-[60]"
             onClick={onClose}
           />
 
@@ -35,7 +35,7 @@ export default function MobileMenu({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-bg z-50 shadow-2xl p-8 flex flex-col"
+            className="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-bg z-[70] shadow-2xl p-8 flex flex-col"
           >
             <button
               onClick={onClose}
