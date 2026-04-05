@@ -74,12 +74,11 @@ export default function AboutPage() {
             actual features and products.
           </p>
           <p>
-            I recently interviewed for a GTM AI builder role at a major FinTech
-            unicorn and it made one thing clear to me: I want to work where{" "}
+            I&apos;m excited about the field that lies at the intersection of{" "}
             <strong className="text-primary">
-              technology meets go-to-market strategy
+              AI, GTM, and strategy
             </strong>
-            .
+            . That&apos;s where I want to build.
           </p>
           <p>
             I&apos;m also not just a tech person. I spent time preparing for
