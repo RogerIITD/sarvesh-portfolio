@@ -45,7 +45,7 @@ export default function SocialDock() {
             bg-secondary/[0.08] opacity-50
             hover:opacity-100 hover:bg-primary/15 hover:scale-110
             transition-all duration-300
-            max-md:opacity-80 max-md:w-9 max-md:h-9
+            max-md:opacity-80 max-md:w-11 max-md:h-11
           "
         >
           <Image

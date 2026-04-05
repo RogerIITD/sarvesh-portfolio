@@ -64,7 +64,7 @@ export default async function HomePage() {
   return (
     <>
       <GradientMesh />
-      <div className="max-w-5xl mx-auto px-6 pt-24 pb-16">
+      <div className="max-w-5xl mx-auto px-6 pt-24 pb-20 md:pb-16">
         {/* Row 1: Hero */}
         <div className="mb-5">
           <BentoCard index={0}>
@@ -124,13 +124,13 @@ export default async function HomePage() {
             <div className="h-full p-6 flex flex-col justify-center items-center text-center">
               <p className="text-xs font-mono text-primary uppercase tracking-wider mb-4">Connect</p>
               <div className="flex gap-4">
-                <a href="https://www.linkedin.com/in/sarvesh-khimesra/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+                <a href="https://www.linkedin.com/in/sarvesh-khimesra/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-11 h-11 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
                   <Image src="/icons/linkedin.svg" alt="LinkedIn" width={20} height={20} />
                 </a>
-                <a href="https://www.instagram.com/sarveshrf/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+                <a href="https://www.instagram.com/sarveshrf/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-11 h-11 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
                   <Image src="/icons/instagram.svg" alt="Instagram" width={20} height={20} />
                 </a>
-                <a href="https://x.com/SKhimesra" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+                <a href="https://x.com/SKhimesra" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="w-11 h-11 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
                   <Image src="/icons/twitter.svg" alt="Twitter" width={20} height={20} />
                 </a>
               </div>

@@ -50,7 +50,7 @@ export default function Nav() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
+          className="md:hidden flex flex-col gap-1.5 p-3"
           onClick={() => setMobileOpen(true)}
           aria-label="Open menu"
         >

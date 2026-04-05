@@ -85,7 +85,7 @@ export default function SongPlayer({ compact = false }: SongPlayerProps) {
 
   return (
     <div className="text-center max-w-[380px] mx-auto">
-      <div className="w-[200px] h-[200px] mx-auto mb-6 rounded-xl bg-chai/20 border border-white/10 flex items-center justify-center shadow-xl">
+      <div className="w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] mx-auto mb-6 rounded-xl bg-chai/20 border border-white/10 flex items-center justify-center shadow-xl">
         <span className="text-6xl text-accent">{"\u266A"}</span>
       </div>
       <h3 className="font-heading text-3xl text-white mb-1">Maafi</h3>
@@ -106,7 +106,7 @@ export default function SongPlayer({ compact = false }: SongPlayerProps) {
         <div
           ref={barRef}
           onClick={handleSeek}
-          className="flex-1 h-1 bg-white/20 rounded cursor-pointer relative"
+          className="flex-1 h-2 bg-white/20 rounded cursor-pointer relative"
         >
           <div
             className="h-full bg-accent rounded transition-[width] duration-100"

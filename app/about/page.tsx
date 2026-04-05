@@ -65,7 +65,7 @@ export default function AboutPage() {
         <h1 className="font-heading text-4xl text-secondary mb-8">
           So, who&apos;s this guy?
         </h1>
-        <div className="bg-parchment rounded-xl p-8 shadow-md space-y-4 text-base leading-relaxed">
+        <div className="bg-parchment rounded-xl p-5 sm:p-8 shadow-md space-y-4 text-base leading-relaxed">
           <p>
             I&apos;ve never really been a one lane kind of person. Right now I&apos;m
             spending most of my time with{" "}
@@ -103,7 +103,7 @@ export default function AboutPage() {
         <h2 className="font-heading text-3xl text-secondary mb-6">
           What I&apos;m building
         </h2>
-        <div className="bg-white rounded-xl p-8 shadow-md">
+        <div className="bg-white rounded-xl p-5 sm:p-8 shadow-md">
           <p className="text-base leading-relaxed mb-6">
             I think the best way to learn AI is to just build stuff with it. So
             that&apos;s what I&apos;m doing.
@@ -144,7 +144,7 @@ export default function AboutPage() {
         <p className="text-sm text-accent tracking-wider text-center mb-8">
           click to listen, in my voice
         </p>
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
           {shayaris.map((s, i) => (
             <ShayariCard
               key={i}
@@ -157,7 +157,7 @@ export default function AboutPage() {
       </section>
 
       {/* Song Player */}
-      <section className="mb-16 bg-gradient-to-br from-secondary to-[#0d1b2a] rounded-2xl p-10 text-bg">
+      <section className="mb-16 bg-gradient-to-br from-secondary to-[#0d1b2a] rounded-2xl p-6 sm:p-10 text-bg">
         <SongPlayer />
       </section>
 
@@ -169,7 +169,7 @@ export default function AboutPage() {
         <p className="text-sm text-accent tracking-wider text-center mb-8">
           if there&apos;s a ball and some competition, count me in
         </p>
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
           {sportsPolaroids.map((p) => (
             <Polaroid
               key={p.src}
@@ -204,7 +204,7 @@ export default function AboutPage() {
       </section>
 
       {/* Connect */}
-      <section className="text-center bg-gradient-to-br from-chai to-parchment rounded-2xl p-10">
+      <section className="text-center bg-gradient-to-br from-chai to-parchment rounded-2xl p-6 sm:p-10">
         <h2 className="font-heading text-3xl text-secondary mb-4">
           Let&apos;s connect
         </h2>

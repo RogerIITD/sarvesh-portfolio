@@ -15,7 +15,7 @@ export default function Polaroid({
 }: PolaroidProps) {
   return (
     <div
-      className="bg-white p-3 pb-0 rounded shadow-md hover:rotate-0 hover:scale-105 hover:z-10 transition-transform duration-300 w-[210px]"
+      className="bg-white p-3 pb-0 rounded shadow-md hover:rotate-0 hover:scale-105 hover:z-10 transition-transform duration-300 w-full max-w-[210px]"
       style={{ transform: `rotate(${rotation}deg)` }}
     >
       <div className="w-full aspect-square bg-parchment rounded-sm overflow-hidden">

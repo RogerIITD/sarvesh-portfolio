@@ -16,7 +16,7 @@ export default function PostCard({ post }: PostCardProps) {
   if (post.type === "short take") {
     return (
       <article className="bg-white rounded-xl p-6 shadow-sm border border-secondary/5">
-        <div className="flex items-center gap-3 mb-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
           <span className="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded-full">
             short take
           </span>
@@ -56,7 +56,7 @@ export default function PostCard({ post }: PostCardProps) {
           </div>
         )}
         <div className="p-6">
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
             <span className="text-xs font-mono text-secondary bg-secondary/10 px-2 py-0.5 rounded-full">
               essay
             </span>

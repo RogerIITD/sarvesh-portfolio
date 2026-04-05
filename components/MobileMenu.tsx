@@ -35,11 +35,11 @@ export default function MobileMenu({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 bottom-0 w-72 bg-bg z-50 shadow-2xl p-8 flex flex-col"
+            className="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-bg z-50 shadow-2xl p-8 flex flex-col"
           >
             <button
               onClick={onClose}
-              className="self-end text-secondary text-2xl mb-8"
+              className="self-end text-secondary text-2xl mb-8 p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Close menu"
             >
               &times;
