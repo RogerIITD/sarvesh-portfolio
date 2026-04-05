@@ -1,5 +1,4 @@
 import ShayariCard from "@/components/ShayariCard";
-import ShayariText from "@/components/ShayariText";
 import SongPlayer from "@/components/SongPlayer";
 import Polaroid from "@/components/Polaroid";
 import Image from "next/image";
