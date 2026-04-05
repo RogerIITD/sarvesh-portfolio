@@ -36,10 +36,10 @@ export default function ShayariCard({
 
   return (
     <div
-      className="bg-parchment border border-primary/15 rounded-xl px-8 py-6 pb-5 w-[280px] text-center relative shadow-md hover:shadow-lg transition-shadow"
+      className="bg-parchment border border-primary/15 rounded-xl px-6 py-5 pb-4 w-full max-w-[280px] text-center relative shadow-md hover:shadow-lg transition-shadow"
       style={{ transform: `rotate(${rotation}deg)` }}
     >
-      <p className="font-shayari text-lg leading-relaxed text-secondary mb-5 whitespace-pre-line">
+      <p className="font-shayari text-sm leading-relaxed text-secondary mb-4 whitespace-pre-line">
         {text}
       </p>
 

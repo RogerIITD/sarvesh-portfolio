@@ -42,7 +42,7 @@ export default function PhotoCarousel() {
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}
       onTouchEnd={() => setIsPaused(false)}
-      className="h-full overflow-x-auto overflow-y-hidden flex gap-3 p-4 scrollbar-hide"
+      className="h-[180px] overflow-x-auto overflow-y-hidden flex gap-3 scrollbar-hide"
       style={{ scrollBehavior: "smooth" }}
     >
       {irelandPhotos.map((photo) => (

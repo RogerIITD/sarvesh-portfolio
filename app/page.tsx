@@ -1,5 +1,4 @@
 import GradientMesh from "@/components/GradientMesh";
-import BentoGrid from "@/components/BentoGrid";
 import BentoCard from "@/components/BentoCard";
 import HeroCard from "@/components/HeroCard";
 import ShayariCard from "@/components/ShayariCard";
@@ -20,38 +19,34 @@ const sportsPhotos = [
 
 const shayaris = [
   {
-    text: "बेसब्र, बेखबर, बेइंतहां यू ही चलता जा रहा।\nकुछ पाने की आस लिए यू ही भटकता जा रहा।।\nपहुंच जाना है उस मंज़िल के क़रीब जिसका कोई ठिकाना ना है।\nपर ये तो बता दो उसके बाद का फसाना क्या है।।",
+    text: "बेसब्र, बेखबर, बेइंतहां यू ही चलता जा रहा।\nकुछ पाने की आस लिए यू ही भटकता जा रहा।।",
     audio: "/audio/shayari-1.mp3",
   },
   {
-    text: "उस हरकत-ए-शाम में तुम भी मत खो जाना\nउस मंज़र-ए-वतन में तुम भी मत भूल जाना\nये नीला समंदर नहीं, काला दलदल है ग़ालिब मियाँ\nतुम तो \"कमल\" की तरह ही खिल के आना",
+    text: "उस हरकत-ए-शाम में तुम भी मत खो जाना\nउस मंज़र-ए-वतन में तुम भी मत भूल जाना",
     audio: "/audio/shayari-2.mp3",
   },
   {
-    text: "उनके ईमान पर अर्ज़ करने की अब फ़ुर्सत नहीं है\nउनकी फ़ितरतों पर इशारा करने का अब खर्च नहीं है\nक्या हुआ ग़ालिब तुम्हारे उन बेइंतहाँ लफ़्ज़ो को\nअफ़सोस है या फिर बेबसी के हालातों की बेरहम चुप्पी!?",
+    text: "उनके ईमान पर अर्ज़ करने की अब फ़ुर्सत नहीं है\nउनकी फ़ितरतों पर इशारा करने का अब खर्च नहीं है",
     audio: "/audio/shayari-3.mp3",
   },
 ];
 
 export default async function HomePage() {
-  // Fetch latest post from Notion
-  let latestPost: { title: string; slug: string; excerpt: string; type: string } | null = null;
+  let latestPost: { title: string; slug: string; excerpt: string } | null = null;
   try {
     const posts = await fetchPublishedPosts();
     if (posts.length > 0) {
-      const p = posts[0];
       latestPost = {
-        title: p.title,
-        slug: p.slug,
-        excerpt: p.excerpt || "",
-        type: p.type,
+        title: posts[0].title,
+        slug: posts[0].slug,
+        excerpt: posts[0].excerpt || "",
       };
     }
   } catch {
-    // Notion not configured yet
+    // Notion not configured
   }
 
-  // Fetch now page snippet
   let nowSnippet = "What I'm up to right now...";
   try {
     const nowData = await fetchNowPage();
@@ -60,132 +55,97 @@ export default async function HomePage() {
       nowSnippet = plainText.slice(0, 100) + (plainText.length > 100 ? "..." : "");
     }
   } catch {
-    // Notion not configured yet
+    // Notion not configured
   }
 
-  // Pick a random shayari (server-side, changes on each revalidation)
   const randomShayari = shayaris[Math.floor(Math.random() * shayaris.length)];
-  // Pick a random sports photo
   const randomSport = sportsPhotos[Math.floor(Math.random() * sportsPhotos.length)];
 
   return (
     <>
       <GradientMesh />
-      <BentoGrid>
-        {/* Hero Card — 2x2 */}
-        <BentoCard
-          index={0}
-          className="col-span-1 md:col-span-2 row-span-2"
-        >
-          <HeroCard />
-        </BentoCard>
+      <div className="max-w-5xl mx-auto px-6 pt-24 pb-16">
+        {/* Row 1: Hero */}
+        <div className="mb-5">
+          <BentoCard index={0}>
+            <HeroCard />
+          </BentoCard>
+        </div>
 
-        {/* Latest Post — 2x1 */}
-        <BentoCard index={1} className="col-span-1 md:col-span-2 row-span-1">
-          <Link
-            href={latestPost ? `/blog/${latestPost.slug}` : "/blog"}
-            className="block h-full p-6"
-          >
-            <p className="text-xs font-mono text-primary uppercase tracking-wider mb-2">
-              Latest Post
-            </p>
-            <h3 className="font-heading text-lg text-secondary mb-1">
-              {latestPost ? latestPost.title : "Coming soon..."}
-            </h3>
-            <p className="text-sm text-text/60 line-clamp-2">
-              {latestPost
-                ? latestPost.excerpt || "Read the latest post on the blog."
-                : "Blog posts powered by Notion CMS. Check back soon."}
-            </p>
-          </Link>
-        </BentoCard>
+        {/* Row 2: Latest Post + Shayari + Now */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+          <BentoCard index={1} className="md:col-span-1">
+            <Link href={latestPost ? `/blog/${latestPost.slug}` : "/blog"} className="block h-full p-6">
+              <p className="text-xs font-mono text-primary uppercase tracking-wider mb-2">Latest Post</p>
+              <h3 className="font-heading text-lg text-secondary mb-2">
+                {latestPost ? latestPost.title : "Coming soon..."}
+              </h3>
+              <p className="text-sm text-text/60 line-clamp-3">
+                {latestPost ? latestPost.excerpt : "Blog posts powered by Notion. Check back soon."}
+              </p>
+            </Link>
+          </BentoCard>
 
-        {/* Shayari Spotlight — 1x2 */}
-        <BentoCard index={2} className="col-span-1 row-span-2">
-          <div className="h-full p-5 flex flex-col items-center justify-center">
-            <p className="text-xs font-mono text-primary uppercase tracking-wider mb-3">
-              Shayari
-            </p>
-            <ShayariCard
-              text={randomShayari.text}
-              audioSrc={randomShayari.audio}
-              rotation={0}
-            />
-          </div>
-        </BentoCard>
-
-        {/* Now — 1x1 */}
-        <BentoCard index={3} className="col-span-1 row-span-1">
-          <Link href="/now" className="block h-full p-6">
-            <p className="text-xs font-mono text-primary uppercase tracking-wider mb-2">
-              Now
-            </p>
-            <p className="text-sm text-text/70 line-clamp-4">{nowSnippet}</p>
-          </Link>
-        </BentoCard>
-
-        {/* Song Player — 1x1 */}
-        <BentoCard index={4} className="col-span-1 row-span-1">
-          <div className="h-full p-5 flex items-center">
-            <SongPlayer compact />
-          </div>
-        </BentoCard>
-
-        {/* Sports — 1x1 */}
-        <BentoCard index={5} className="col-span-1 row-span-1">
-          <div className="h-full p-4 flex items-center justify-center">
-            <Polaroid
-              src={randomSport.src}
-              alt={randomSport.alt}
-              caption={randomSport.caption}
-              rotation={-2}
-            />
-          </div>
-        </BentoCard>
-
-        {/* Ireland Carousel — 2x1 */}
-        <BentoCard index={6} className="col-span-1 md:col-span-2 row-span-1">
-          <PhotoCarousel />
-        </BentoCard>
-
-        {/* Connect — 1x1 */}
-        <BentoCard index={7} className="col-span-1 row-span-1">
-          <div className="h-full p-6 flex flex-col justify-center items-center text-center">
-            <p className="text-xs font-mono text-primary uppercase tracking-wider mb-3">
-              Connect
-            </p>
-            <div className="flex gap-4">
-              <a
-                href="https://www.linkedin.com/in/sarvesh-khimesra/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
-              >
-                <Image src="/icons/linkedin.svg" alt="LinkedIn" width={20} height={20} />
-              </a>
-              <a
-                href="https://www.instagram.com/sarveshrf/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
-              >
-                <Image src="/icons/instagram.svg" alt="Instagram" width={20} height={20} />
-              </a>
-              <a
-                href="https://x.com/SKhimesra"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Twitter"
-                className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
-              >
-                <Image src="/icons/twitter.svg" alt="Twitter" width={20} height={20} />
-              </a>
+          <BentoCard index={2} className="md:col-span-1">
+            <div className="h-full p-5 flex flex-col items-center justify-center">
+              <p className="text-xs font-mono text-primary uppercase tracking-wider mb-3">Shayari</p>
+              <ShayariCard text={randomShayari.text} audioSrc={randomShayari.audio} rotation={0} />
             </div>
+          </BentoCard>
+
+          <BentoCard index={3} className="md:col-span-1">
+            <Link href="/now" className="block h-full p-6">
+              <p className="text-xs font-mono text-primary uppercase tracking-wider mb-2">Now</p>
+              <p className="text-sm text-text/70 leading-relaxed">{nowSnippet}</p>
+            </Link>
+          </BentoCard>
+        </div>
+
+        {/* Row 3: Song + Sports + Connect */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+          <BentoCard index={4} className="md:col-span-1">
+            <div className="h-full p-6 flex items-center">
+              <SongPlayer compact />
+            </div>
+          </BentoCard>
+
+          <BentoCard index={5} className="md:col-span-1">
+            <div className="h-full p-5 flex items-center justify-center">
+              <Polaroid
+                src={randomSport.src}
+                alt={randomSport.alt}
+                caption={randomSport.caption}
+                rotation={-2}
+              />
+            </div>
+          </BentoCard>
+
+          <BentoCard index={6} className="md:col-span-1">
+            <div className="h-full p-6 flex flex-col justify-center items-center text-center">
+              <p className="text-xs font-mono text-primary uppercase tracking-wider mb-4">Connect</p>
+              <div className="flex gap-4">
+                <a href="https://www.linkedin.com/in/sarvesh-khimesra/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+                  <Image src="/icons/linkedin.svg" alt="LinkedIn" width={20} height={20} />
+                </a>
+                <a href="https://www.instagram.com/sarveshrf/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+                  <Image src="/icons/instagram.svg" alt="Instagram" width={20} height={20} />
+                </a>
+                <a href="https://x.com/SKhimesra" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center hover:bg-primary/20 transition-colors">
+                  <Image src="/icons/twitter.svg" alt="Twitter" width={20} height={20} />
+                </a>
+              </div>
+            </div>
+          </BentoCard>
+        </div>
+
+        {/* Row 4: Ireland Photo Carousel (full width) */}
+        <BentoCard index={7}>
+          <div className="p-4">
+            <p className="text-xs font-mono text-primary uppercase tracking-wider mb-3 px-2">Ireland Postcards</p>
+            <PhotoCarousel />
           </div>
         </BentoCard>
-      </BentoGrid>
+      </div>
     </>
   );
 }
